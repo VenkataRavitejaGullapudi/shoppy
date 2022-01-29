@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Shoppy APIs
+  version: 1.0.0
+  description: A set of API endpoints for shoppy ecommerce app.
+  contact:
+    email: ravitejagullapudi@gmail.com
+    url: https://ravitejagullapudi.tech
+
+servers:
+  - url: "{protocol}://localhost:4000/api/{version}"
+    description: localhost version of our app
+    variables:
+      version:
+        default: v1
+        enum:
+          - v1
+          - v2
+      protocol:
+        default: http
+        enum:
+          - http
+          - https
+
+  - url: "{protocol}://soc-api.herokuapp.com/api/{version}"
+    description: hosted version of our app
+    variables:
+      version:
+        default: v1
+        enum:
+          - v1
+          - v2
+      protocol:
+        default: http
+        enum:
+          - http
+          - https
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    cookieAuth:
+      name: cookie
+      type: apiKey
+      in: cookie
+
+paths:
+  /:
+    get:
+      tags:
+        - home
+      summary: returns username, followers and follows
+      responses:
+        200:
+          description: returns an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers:
+                    type: string
+                  follows:
+                    type: string
+        404:
+          description: Path not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+
+    post:
+      tags:
+        - socialapp
+      summary: returns username, followers and follows
+      responses:
+        200:
+          description: returns an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers:
+                    type: string
+                  follows:
+                    type: string
+        404:
+          description: Path not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
