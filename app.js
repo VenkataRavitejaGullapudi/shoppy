@@ -27,8 +27,10 @@ app.use(morgan("tiny"))
 
 // router imports
 const homeRoutes = require("./routes/home")
+const userRoutes = require("./routes/user")
 
 // router middlewares
 app.use(`${API_PREFIX}`, homeRoutes)
+app.use(`${API_PREFIX}/user`, userRoutes)
 
 module.exports = app
